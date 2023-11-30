@@ -1,8 +1,9 @@
 from sys import argv
 import numpy as np
 
+
 class Solution:
-    sums : np.array
+    sums: np.array
 
     def getInput(this, file: str):
         list = []
@@ -10,10 +11,10 @@ class Solution:
             current = 0
             for line in fp:
                 line = line.removesuffix("\n")
-                if (line == "") :
+                if line == "":
                     list.append(current)
                     current = 0
-                else :
+                else:
                     lineInt = int(line)
                     current += lineInt
 
@@ -23,18 +24,14 @@ class Solution:
     def solve1(this) -> int:
         return max(this.sums)
 
-
     def solve2(this) -> int:
         return np.sort(this.sums)[-3:].sum()
 
 
-
-if __name__ == '__main__':
-
+if __name__ == "__main__":
     file = "input.txt"
-    if (argv.__len__() > 1):
+    if argv.__len__() > 1:
         file = argv[1]
-
 
     solver = Solution()
     solver.getInput(file)
