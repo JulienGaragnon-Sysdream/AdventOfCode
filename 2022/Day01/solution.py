@@ -16,6 +16,8 @@ class Solution:
                 else :
                     lineInt = int(line)
                     current += lineInt
+
+            list.append(current)
         this.sums = np.array(list)
 
     def solve1(this) -> int:
@@ -36,5 +38,5 @@ if __name__ == '__main__':
 
     solver = Solution()
     solver.getInput(file)
-    print(solver.solve1())
-    print(solver.solve2())
+    print("Solution 1: {}".format(solver.solve1()))
+    print("Solution 2: {}".format(solver.solve2()))
