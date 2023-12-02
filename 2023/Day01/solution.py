@@ -51,8 +51,6 @@ class Solution:
         return sum
 
 
-
-
 if __name__ == "__main__":
     file = "input.txt"
     if argv.__len__() > 1:
