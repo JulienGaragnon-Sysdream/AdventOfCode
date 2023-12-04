@@ -21,7 +21,6 @@ def getNumber(line: str, start: int):
     end -= 1
 
     number = line[start : end + 1]
-    # print("Found number {} from {} to {} in {}".format(number, start, end, line))
     num = int(number)
     return (num, start, end)
 
@@ -37,9 +36,6 @@ class Solution:
             for line_num, line in enumerate(lines):
                 for char_num, char in enumerate(line):
                     if not char.isdigit() and char != ".":
-                        print(
-                            "Found symbol {}  at {}:{}".format(char, line_num, char_num)
-                        )
                         widget = Widget(char)
                         self.widgets.append(widget)
                         for i, j in [
@@ -61,12 +57,9 @@ class Solution:
                                 continue
 
                             if lines[line_num + i][char_num + j].isdigit():
-                                num, _, _ = getNumber(
-                                    lines[line_num + i], char_num + j
-                                )
+                                num, _, _ = getNumber(lines[line_num + i], char_num + j)
                                 if num not in widget.numbers:
                                     widget.numbers.append(num)
-        print(*self.widgets)
 
     def solve1(self) -> int:
         return sum(sum(w.numbers) for w in self.widgets)
