@@ -1,5 +1,4 @@
 from sys import argv
-from enum import Enum
 
 
 class Reveal:
@@ -8,9 +7,10 @@ class Reveal:
         self.Green: int = 0
         self.Blue: int = 0
 
-
     def __str__(self):
-        return "Red: {:02}, Green: {:02}, Blue: {:02}".format(self.Red, self.Green, self.Blue)
+        return "Red: {:02}, Green: {:02}, Blue: {:02}".format(
+            self.Red, self.Green, self.Blue
+        )
 
 
 class Game:
@@ -83,7 +83,6 @@ class Solution:
         return sum([game.num for game in possibleGames])
 
     def solve2(this) -> int:
-
         def getPower(game: Game) -> int:
             maxRed = max([r.Red for r in game.reveals])
             maxGreen = max([r.Green for r in game.reveals])
