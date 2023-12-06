@@ -1,4 +1,6 @@
 from sys import argv
+import time
+from datetime import timedelta
 
 
 class AlmanacRange:
@@ -58,7 +60,7 @@ class myRange:
 
     def __str__(self):
         return "myrange({}, {})".format(self.start, self.stop)
-    
+
     def contains(self, number: int) -> bool:
         return number >= self.start and number < self.stop
 
@@ -104,7 +106,7 @@ class Solution:
 
     def reverse(self, number) -> int:
         for i in range(len(self.almanacs), 0, -1):
-            number = self.almanacs[i-1].reverseMap(number)
+            number = self.almanacs[i - 1].reverseMap(number)
 
         return number
 
@@ -181,6 +183,21 @@ if __name__ == "__main__":
         file = argv[1]
 
     solver = Solution()
+    start = time.time()
     solver.getInput(file)
-    print("Solution 1: {}".format(solver.solve1()))
-    print("Solution 2: {}".format(solver.solve2()))
+    end = time.time()
+    elapsed = timedelta(seconds=end - start)
+    print("Parsed in {}.{:06}s".format(elapsed.seconds, elapsed.microseconds))
+
+    start = time.time()
+    solution1 = solver.solve1()
+    end = time.time()
+    elapsed = timedelta(seconds=end - start)
+    print("Solution 1: {} in {}.{:06}s".format(solution1, elapsed.seconds, elapsed.microseconds))
+
+
+    start = time.time()
+    solution2 = solver.solve2()
+    end = time.time()
+    elapsed = timedelta(seconds=end - start)
+    print("Solution 2: {} in {}.{:06}s".format(solution2, elapsed.seconds, elapsed.microseconds))
