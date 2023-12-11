@@ -182,22 +182,22 @@ if __name__ == "__main__":
     if argv.__len__() > 1:
         file = argv[1]
 
+    def run(func)-> [any, str]:
+        start = time.time()
+        res = func()
+        end = time.time()
+        elapsed = timedelta(seconds=end - start)
+
+        ret = tuple([res, "{}.{:06}s".format(elapsed.seconds, elapsed.microseconds)])
+        return ret
+
     solver = Solution()
-    start = time.time()
-    solver.getInput(file)
-    end = time.time()
-    elapsed = timedelta(seconds=end - start)
-    print("Parsed in {}.{:06}s".format(elapsed.seconds, elapsed.microseconds))
 
-    start = time.time()
-    solution1 = solver.solve1()
-    end = time.time()
-    elapsed = timedelta(seconds=end - start)
-    print("Solution 1: {} in {}.{:06}s".format(solution1, elapsed.seconds, elapsed.microseconds))
+    _, elapsed = run(lambda: solver.getInput(file))
+    print("Parsed in {}".format(elapsed))
 
+    solution1 , elapsed = run(solver.solve1)
+    print("Solution 1: {} in {}".format(solution1, elapsed))
 
-    start = time.time()
-    solution2 = solver.solve2()
-    end = time.time()
-    elapsed = timedelta(seconds=end - start)
-    print("Solution 2: {} in {}.{:06}s".format(solution2, elapsed.seconds, elapsed.microseconds))
+    solution2 , elapsed = run(solver.solve2)
+    print("Solution 2: {} in {}".format(solution2, elapsed))
